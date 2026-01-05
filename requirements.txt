@@ -1,0 +1,28 @@
+# ============================================================================
+# GEREKLI PYTHON PAKETLERİ
+# Airline Passenger Satisfaction Prediction Projesi
+# ============================================================================
+# Bu dosya, projenin çalışması için gerekli tüm Python kütüphanelerini içerir.
+# Kurulum: pip install -r requirements.txt
+# ============================================================================
+
+# Veri İşleme ve Analiz
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Makine Öğrenmesi
+scikit-learn>=1.3.0
+
+# Görselleştirme
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Model Kaydetme
+joblib>=1.3.0
+
+# Jupyter Notebook Desteği
+jupyter>=1.0.0
+notebook>=7.0.0
+
+# İlerleme Çubuğu (Opsiyonel ama kullanışlı)
+tqdm>=4.65.0

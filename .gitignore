@@ -1,0 +1,16 @@
+# Python cache dosyaları
+__pycache__/
+*.py[cod]
+
+# Sanal ortam klasörleri (Yüklenmemeli)
+venv/
+.venv/
+env/
+.env
+
+# Jupyter Notebook checkpointleri
+.ipynb_checkpoints/
+
+# IDE ayar dosyaları
+.vscode/
+.idea/
