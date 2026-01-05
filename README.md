@@ -215,9 +215,9 @@ Bu proje eğitim amaçlı geliştirilmiştir.
 
 ## 📞 İletişim
 
-**Geliştirici:** [Adınız]  
-**E-posta:** [E-posta adresiniz]  
-**LinkedIn:** [LinkedIn profiliniz]
+**Geliştirici:** [Batuhan Karakuş]  
+**E-posta:** [batukarakush@gmail.com]  
+
 
 ---
 
