@@ -167,16 +167,37 @@ airline-passenger-satisfaction/
 
 ## 📝 Kişisel Değerlendirme
 
-> Bu bölüm stajyer tarafından doldurulacaktır.
-
 ### Öğrendiklerim
-<!-- Proje sürecinde öğrendiğiniz teknik ve kavramsal bilgileri buraya yazın -->
+
+Bu proje süresince makine öğrenmesi alanında birçok değerli deneyim kazandım:
+
+1. **Uçtan Uca ML Pipeline Tasarımı**: Bir makine öğrenmesi projesinin sadece model eğitiminden ibaret olmadığını, veri ön işleme, feature engineering, model seçimi ve değerlendirme aşamalarının ne kadar kritik olduğunu öğrendim.
+
+2. **Modüler Kod Yazımı**: Python'da `src/` klasörü altında modüller oluşturarak kodun tekrar kullanılabilirliğini ve okunabilirliğini artırmayı öğrendim. Bu yaklaşım, ilerideki projelerimde de uygulayacağım önemli bir yazılım mühendisliği pratiği oldu.
+
+3. **Scikit-learn Ekosistemi**: StandardScaler, LabelEncoder, train_test_split gibi araçların doğru kullanımı ve model performans metriklerinin (accuracy, precision, recall, F1-score) nasıl yorumlanacağını kavradım.
+
+4. **Random Forest vs Logistic Regression**: Farklı algoritmaların aynı veri seti üzerinde nasıl farklı performans gösterdiğini gözlemledim. Random Forest'ın non-linear ilişkileri yakalama konusunda Logistic Regression'a göre çok daha başarılı olduğunu deneyimledim.
 
 ### Karşılaştığım Zorluklar
-<!-- Proje sırasında karşılaştığınız zorlukları ve çözümlerini yazın -->
+
+1. **Eksik Değer Yönetimi**: Veri setindeki eksik değerlerin nasıl ele alınacağına karar vermek başlangıçta zorlandığım konulardan biriydi. Median imputation stratejisinin neden tercih edildiğini araştırarak bu sorunu aştım.
+
+2. **Sınıf Dengesizliği**: Hedef değişkendeki sınıf dengesizliğinin (56.7% vs 43.3%) model performansını nasıl etkileyebileceğini anlamak ve stratified split kullanmanın önemini kavramak zaman aldı.
+
+3. **Hiperparametre Ayarlaması**: Random Forest'ın `n_estimators`, `max_depth` gibi hiperparametrelerinin optimal değerlerini bulmak için deneme-yanılma yöntemini kullandım. İleride GridSearchCV veya RandomizedSearchCV kullanarak bu süreci otomatikleştirmeyi hedefliyorum.
 
 ### Geliştirme Önerileri
-<!-- Projeyi nasıl daha da geliştirebileceğinize dair fikirlerinizi yazın -->
+
+1. **Cross-Validation**: K-Fold cross-validation kullanarak modelin daha güvenilir bir şekilde değerlendirilmesi sağlanabilir.
+
+2. **Feature Importance Analizi**: Random Forest'ın feature importance özelliği kullanılarak hangi özelliklerin memnuniyeti en çok etkilediği görselleştirilebilir.
+
+3. **Gradient Boosting Modelleri**: XGBoost veya LightGBM gibi daha gelişmiş ensemble yöntemleri denenerek performans artırılabilir.
+
+4. **Web API Entegrasyonu**: Flask veya FastAPI kullanılarak eğitilmiş modelin bir REST API olarak sunulması, gerçek dünya uygulamalarına entegrasyonu kolaylaştırabilir.
+
+5. **Docker Konteynerizasyonu**: Projenin Docker konteynerı içinde paketlenmesi, farklı ortamlarda tutarlı çalışmasını sağlayabilir.
 
 ---
 

@@ -258,13 +258,40 @@ def run_pipeline(
     
     results['best_model'] = best_model
     
-    # Karışıklık matrisini görselleştiriyoruz (opsiyonel)
-    if show_plots:
-        try:
-            cm_path = os.path.join(model_save_dir, "confusion_matrix.png")
-            plot_confusion_matrix(best_result, save_path=cm_path)
-        except Exception as e:
-            print(f"  ! Karışıklık matrisi gösterilirken hata: {e}")
+    # Karışıklık matrisini kaydediyoruz (her zaman PNG olarak kaydedilir)
+    try:
+        cm_path = os.path.join(model_save_dir, "confusion_matrix.png")
+        # Matplotlib backend'i ayarla (GUI gerektirmeyen mod)
+        import matplotlib
+        matplotlib.use('Agg')
+        import matplotlib.pyplot as plt
+        from src.evaluate import plot_confusion_matrix as plot_cm_func
+        
+        # Karışıklık matrisi grafiğini oluştur ve kaydet (show=False)
+        cm = best_result['confusion_matrix']
+        model_name = best_result.get('model_name', 'Model')
+        import seaborn as sns
+        
+        fig, ax = plt.subplots(figsize=(8, 6))
+        sns.heatmap(
+            cm,
+            annot=True,
+            fmt='d',
+            cmap='Blues',
+            xticklabels=['Dissatisfied', 'Satisfied'],
+            yticklabels=['Dissatisfied', 'Satisfied'],
+            annot_kws={'size': 14},
+            ax=ax
+        )
+        ax.set_title(f'Karışıklık Matrisi - {model_name}', fontsize=14, fontweight='bold')
+        ax.set_xlabel('Tahmin Edilen Sınıf', fontsize=12)
+        ax.set_ylabel('Gerçek Sınıf', fontsize=12)
+        plt.tight_layout()
+        plt.savefig(cm_path, dpi=300, bbox_inches='tight')
+        plt.close(fig)
+        print(f"  ✓ Karışıklık matrisi kaydedildi: {cm_path}")
+    except Exception as e:
+        print(f"  ! Karışıklık matrisi kaydedilirken hata: {e}")
     
     # =========================================================================
     # SONUÇ ÖZETİ
