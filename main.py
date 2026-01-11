@@ -26,6 +26,7 @@ TUSAŞ SKY Remote Staj Programı - Makine Öğrenmesi Projesi
 import os
 import sys
 import time
+import pandas as pd
 from datetime import datetime
 
 # Proje kök dizinini Python path'ine ekliyoruz
@@ -174,6 +175,33 @@ def run_pipeline(
     
     results['preprocessing_time'] = preprocessing_time
     print(f"\n⏱  Ön işleme süresi: {preprocessing_time:.2f} saniye")
+    
+    # İşlenmiş veriyi kaydetme (data/processed/ klasörünü doldurmak için)
+    try:
+        processed_dir = "data/processed"
+        if not os.path.exists(processed_dir):
+            os.makedirs(processed_dir)
+            
+        print(f"\n💾 İşlenmiş veriler '{processed_dir}/' klasörüne kaydediliyor...")
+        
+        # Sütun isimlerini preprocessor'dan alabiliriz veya genel isimler verebiliriz
+        # Preprocessor'da numeric ve categorical sütunlar var. 
+        feature_cols = preprocessor.numeric_columns + preprocessor.categorical_columns
+        
+        # X_train ve y_train'i birleştirip DataFrame olarak kaydedelim
+        train_processed_df = pd.DataFrame(X_train, columns=feature_cols)
+        train_processed_df['target'] = y_train
+        train_processed_df.to_csv(os.path.join(processed_dir, "train_processed.csv"), index=False)
+        
+        # X_test ve y_test'i birleştirip DataFrame olarak kaydedelim
+        test_processed_df = pd.DataFrame(X_test, columns=feature_cols)
+        test_processed_df['target'] = y_test
+        test_processed_df.to_csv(os.path.join(processed_dir, "test_processed.csv"), index=False)
+        
+        print(f"  ✓ İşlenmiş eğitim verisi kaydedildi: {os.path.join(processed_dir, 'train_processed.csv')}")
+        print(f"  ✓ İşlenmiş test verisi kaydedildi: {os.path.join(processed_dir, 'test_processed.csv')}")
+    except Exception as e:
+        print(f"  ! İşlenmiş veriler kaydedilirken hata: {e}")
     
     # =========================================================================
     # ADIM 3: MODEL EĞİTİMİ
